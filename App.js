@@ -112,14 +112,14 @@ function App() {
                   <h5>QR Code:</h5>
 
                   <div style={{ maxWidth: "300px", margin: "auto" }}>
-                    {generateQrCode()}
+                    <div ref={qrCodeRef}>{generateQrCode()}</div>
+                    <button
+                      className="btn btn-primary mt-3"
+                      onClick={handleSaveAsPNG}
+                    >
+                      Save QR as PNG
+                    </button>
                   </div>
-                  <button
-                    className="btn btn-primary mt-3"
-                    onClick={handleSaveAsPNG}
-                  >
-                    Save as PNG
-                  </button>
                 </div>
               )}
             </div>
