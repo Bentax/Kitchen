@@ -3,7 +3,6 @@ import * as XLSX from "xlsx";
 import QRCode from "qrcode.react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Agreement from "./components/Agreement.js";
-//import "../photo_1.jpg";
 
 function App() {
   const [data, setData] = useState([]);
