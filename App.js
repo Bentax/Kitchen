@@ -2,6 +2,8 @@ import React, { useState, useRef } from "react";
 import * as XLSX from "xlsx";
 import QRCode from "qrcode.react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Agreement from "./components/Agreement.js";
+//import "../photo_1.jpg";
 
 function App() {
   const [data, setData] = useState([]);
@@ -63,7 +65,16 @@ function App() {
 
   return (
     <div className="container p-5 my-5">
-      <h1>CucinaSalvaApp</h1>
+      <div className="nav">
+        <h1>CucinaSalvaApp</h1>
+        <img
+          src="https://www.myvehicle.ie/uploads/articles/2016/08/warranty.jpg"
+          alt="Cinque Terre"
+          width="100"
+          height="50"
+        />
+      </div>
+      <Agreement />
       <div className="row">
         <div className="col-12">
           <input
@@ -113,6 +124,13 @@ function App() {
 
                   <div style={{ maxWidth: "300px", margin: "auto" }}>
                     <div ref={qrCodeRef}>{generateQrCode()}</div>
+                    <img
+                      src="../photo_1.jpg"
+                      className="rounded"
+                      alt="Cinque Terre"
+                      width="500"
+                      height="600"
+                    ></img>
                     <button
                       className="btn btn-primary mt-3"
                       onClick={handleSaveAsPNG}
