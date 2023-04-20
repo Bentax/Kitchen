@@ -3,7 +3,7 @@ import * as XLSX from "xlsx";
 import QRCode from "qrcode.react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Agreement from "./components/Agreement.js";
-import PdfComponent from "./PdfComponent";
+import PdfComponent from "./components/PdfComponent";
 
 function App() {
   const [data, setData] = useState([]);
