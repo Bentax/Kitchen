@@ -1,3 +1,4 @@
+// не работает
 import React, { useState } from "react";
 import Barcode from "react-barcode";
 
