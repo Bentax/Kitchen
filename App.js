@@ -3,6 +3,7 @@ import * as XLSX from "xlsx";
 import QRCode from "qrcode.react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Agreement from "./components/Agreement.js";
+import PdfComponent from "./PdfComponent";
 
 function App() {
   const [data, setData] = useState([]);
@@ -137,6 +138,7 @@ function App() {
                       Save QR as PNG
                     </button>
                   </div>
+                <PdfComponent />
                 </div>
               )}
             </div>
