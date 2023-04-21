@@ -1,3 +1,4 @@
+// отображает QR code ниже видео
 import React, { useEffect, useRef, useState } from "react";
 import jsQR from "jsqr";
 
