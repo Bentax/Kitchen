@@ -3,7 +3,7 @@ import * as XLSX from "xlsx";
 import QRCode from "qrcode.react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Agreement from "./components/Agreement.js";
-import PdfComponent from "./components/PdfComponent";
+import PdfComponent from "./components/PdfComponent.js";
 
 function App() {
   const [data, setData] = useState([]);
@@ -21,14 +21,19 @@ function App() {
     ) {
       const reader = new FileReader();
       reader.onload = (e) => {
-        const workbook = XLSX.read(e.target.result, { type: "binary" });
+        const binaryData = e.target.result;
+        const workbook = XLSX.read(binaryData, { type: "binary" });
         const worksheet = workbook.Sheets[workbook.SheetNames[0]];
-        const rows = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+        const options = { header: 1, dateNF: "m/d/yy" };
+        const rows = XLSX.utils.sheet_to_json(worksheet, options);
         setData(rows);
-        setSelectedRows([]);
+        setError("");
       };
       reader.readAsBinaryString(file);
-      setError("");
+      const audio = new Audio(
+        "https://actions.google.com/sounds/v1/science_fiction/dream_breath.ogg"
+      );
+      audio.play();
     } else {
       setData([]);
       setError(
@@ -43,6 +48,10 @@ function App() {
     } else {
       setSelectedRows([...selectedRows, rowIndex]);
     }
+    const audio = new Audio(
+      "https://actions.google.com/sounds/v1/alarms/beep_short.ogg"
+    );
+    audio.play();
   };
 
   const generateQrCode = () => {
@@ -61,17 +70,22 @@ function App() {
       downloadLink.click();
       document.body.removeChild(downloadLink);
     }
+    const audio = new Audio(
+      "https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg"
+    );
+    audio.play();
   };
 
   return (
     <div className="container p-5 my-5">
       <div className="nav">
-        <h1>CucinaSalvaApp</h1>
+        <h1>SealyDoc.com</h1>
         <img
-          src="https://www.myvehicle.ie/uploads/articles/2016/08/warranty.jpg"
+          className="float-end"
+          src="https://us.123rf.com/450wm/yupiramos/yupiramos1608/yupiramos160812564/61151155-circle-seal-frame-icon-vector-illustration-design.jpg"
           alt="Cinque Terre"
-          width="100"
-          height="50"
+          width="60"
+          height="60"
         />
       </div>
       <Agreement />
@@ -124,13 +138,7 @@ function App() {
 
                   <div style={{ maxWidth: "300px", margin: "auto" }}>
                     <div ref={qrCodeRef}>{generateQrCode()}</div>
-                    <img
-                      src="../photo_1.jpg"
-                      className="rounded"
-                      alt="Cinque Terre"
-                      width="500"
-                      height="600"
-                    ></img>
+
                     <button
                       className="btn btn-primary mt-3"
                       onClick={handleSaveAsPNG}
@@ -138,7 +146,7 @@ function App() {
                       Save QR as PNG
                     </button>
                   </div>
-                <PdfComponent />
+                  <PdfComponent />
                 </div>
               )}
             </div>
